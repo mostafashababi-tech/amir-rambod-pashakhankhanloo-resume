@@ -1,4 +1,3 @@
-# amir-rambod-pashakhankhanloo-resume
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
@@ -265,7 +264,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            display: none;
+            display: block;
         }
         
         #profilePhoto.loaded {
@@ -651,11 +650,10 @@
             <div class="header-content">
                 <div class="photo-section">
                     <div class="photo-container">
-                        <img id="profilePhoto" src="" alt="عکس پروفایل">
-                        <div class="photo-placeholder">📸</div>
+                        <img id="profilePhoto" src="photo.jpg" alt="عکس پروفایل">
+                        <!-- <div class="photo-placeholder">photo</div> -->
                     </div>
-                    <label for="photoUpload" class="upload-btn">آپلود عکس</label>
-                    <input type="file" id="photoUpload" accept="image/*">
+            
                 </div>
                 
                 <div class="name-section">
@@ -799,42 +797,3 @@
     </div>
 </body>
 </html>
-<script>
-const photoUpload = document.getElementById("photoUpload");
-const profilePhoto = document.getElementById("profilePhoto");
-const placeholder = document.querySelector(".photo-placeholder");
-const uploadBtn = document.querySelector(".upload-btn");
-
-// نمایش عکس ذخیره‌شده بعد از رفرش
-window.addEventListener("load", () => {
-    const savedPhoto = localStorage.getItem("profilePhoto");
-    if (savedPhoto) {
-        profilePhoto.src = savedPhoto;
-        profilePhoto.classList.add("loaded");
-        placeholder.style.display = "none";
-        uploadBtn.style.display = "none";
-    }
-});
-
-// آپلود عکس جدید
-photoUpload.addEventListener("change", function () {
-    const file = this.files[0];
-    if (!file) return;
-
-    if (file.size > 3 * 1024 * 1024) {
-        alert("حجم عکس باید کمتر از ۳ مگابایت باشد");
-        return;
-    }
-
-    const reader = new FileReader();
-    reader.onload = function (e) {
-        const imageData = e.target.result;
-        profilePhoto.src = imageData;
-        profilePhoto.classList.add("loaded");
-        placeholder.style.display = "none";
-        uploadBtn.style.display = "none";
-        localStorage.setItem("profilePhoto", imageData);
-    };
-    reader.readAsDataURL(file);
-});
-</script>
